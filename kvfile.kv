@@ -1,0 +1,1155 @@
+WindowManager:
+    HomeScreen:
+    Screen2:
+    Welcome_Screen:
+    Login_Screen:
+    Sign_Up:
+    First_Screen:
+
+
+        
+
+<Content>
+    orientation: "vertical"
+    spacing: "12dp"
+    size_hint_y: None
+    height: "120dp"
+
+    MDTextField:
+        id:item
+        hint_text: "Item Name"
+
+    MDTextField:
+        id:price
+        hint_text: "Price"
+<HomeScreen>:
+    name: 'home'
+    MDNavigationLayout:
+        ScreenManager:
+            Screen:        
+                MDBoxLayout:
+                    
+                    orientation: "vertical"
+
+                    MDToolbar:
+                        id:toolbar
+                        title: "Profit & Loss"
+                        left_action_items:[["menu",lambda x: nav_drawer.set_state()]] 
+
+                    MDTabs:
+                        id:tab_bar
+                        lock_swiping:False
+                        anim_duration:0
+                        anim_threshold:0
+                        ripple_duration:0
+                        no_ripple_effect:False
+                        on_tab_switch: app.on_tab_switch(*args)
+                   
+                        	
+                        Tab:
+            				id:tab1
+                            icon:"home"
+                            title:"HOME"
+
+                            MDFloatLayout:
+                                
+                                ScrollView:
+                                    always_overscroll:True
+                                    scroll_to:True
+                                    #size_hint: (1, 1)
+                                    #pos_hint: {"top": 1}
+                                    MDBoxLayout:
+                                        orientation: 'vertical'
+                                        size_hint: (1, None)
+                                        adaptive_height: True
+
+                                        MDBoxLayout:
+                                            orientation: 'horizontal'
+                                            spacing: 10
+                                            padding: ['0dp','10dp','0dp','0dp']
+                                            #md_bg_color:0.5,0.5,0.5,1                                            
+                                            size_hint: (1,None)
+                                            height:"150dp"
+                                            
+
+                                                
+                                            MDCard:
+                                                orientation: "vertical"            #size_hint: (0.5,0.2)                                                                           
+                                                radius: [ 20, 20,20, 20,]          #height:200 
+                                                                                                                            
+                                                MDBoxLayout:
+                                                    orientation: "horizontal"
+                                                    padding: ("20dp", "20dp", "0dp", "30dp")
+                                                            
+                                                    MDLabel:
+                                                        text: "Today's Buy : "
+                                                        size_hint_x: 0.5
+                                                    #MDSeparator:
+                                                        #orientation: "vertical"
+
+                                                                
+                                                    MDLabel:       #Buy value
+                                                        id:buy_value
+                                                        
+                                                        size_hint_x: 0.5
+                                                        
+                                                                
+                                                MDBoxLayout:
+                                                    orientation: "horizontal"       #size_hint_y: None                              
+                                                    padding: ("20dp", "0dp", "0dp", "25dp")     #height: dp(30)
+                                                            
+                                                    MDLabel:
+                                                        text: "Today's Sell : "
+                                                        size_hint_x: 0.5
+                                                        #padding:[10,0,0,0]
+                                                    #MDSeparator:
+                                                        #orientation: "vertical"
+                                                    MDLabel:
+                                                        id: sell_value         #sell value
+                                                        
+                                                        size_hint_x: 0.5
+                                                        #halign: "left"
+                                                        #padding:[10,0,0,0]
+                                                        
+                                               
+                                                
+
+
+
+
+
+
+                                                
+                                                    
+                                            MDCard:
+                                                #size_hint: (0.5, 0.2)
+                                                #height:200
+                                                radius: [20, 20,20, 20,]
+                                                orientation:'vertical'
+                                                MDBoxLayout:
+                                                    orientation: "horizontal"
+                                                    padding: ("20dp", "20dp", "0dp", "30dp")
+                                                            
+                                                    MDLabel:
+                                                        text: "Today's Profit : "
+                                                        size_hint_x: 0.5
+                                                    #MDSeparator:
+                                                        #orientation: "vertical"
+
+                                                                
+                                                    MDLabel:    #Profit value
+                                                        id:profit_value
+                                                        
+                                                        size_hint_x: 0.5
+                                                        color:(0, 1, 0, 1)
+                                                                
+                                                MDBoxLayout:
+                                                    orientation: "horizontal"
+                                                    #size_hint_y: None
+                                                    #height: dp(30)
+                                                    padding: ("20dp", "0dp", "0dp", "25dp")
+                                                            
+                                                    MDLabel:
+                                                        text: "Today's Loss : "
+                                                        size_hint_x: 0.5
+                                                        #padding:[10,0,0,0]
+                                                    #MDSeparator:
+                                                        #orientation: "vertical"
+                                                    MDLabel:        #Loss value
+                                                        id:loss_value
+                                                        
+                                                        #halign: "left"
+                                                        #padding:[10,0,0,0]
+                                                        size_hint_x: 0.5
+                                                        color:(1, 0, 0, 1)
+                                    	
+                                    	MDBoxLayout: # blue box 1st box
+                                    		
+                                        	orientation: 'vertical'
+                                        	spacing: "10dp"
+                                            padding: ['0dp','20dp','0dp','20dp']
+                                            #md_bg_color:0.799,0.45,0.6,1
+                                            size_hint: (1,None)
+                                            #height:"400dp"
+                                            adaptive_height: True                                           
+                                            #pos_hint:{"top":0.7}
+                                           
+                                                
+                                            MDLabel:
+                                            	text:"----------------------- Previous Records -------------------------"
+                                            	halign:"center"
+                                                size_hint_y: None
+                                                height: '10sp'
+                                            MDLabel:
+                                            	text:"From"
+                                            	halign:"center"
+                                                size_hint_y: None
+                                                height: "20dp"
+                                            MDRelativeLayout:
+                                                size_hint_y: None
+                                                height: fromdate.height                              
+                                                MDTextField:
+                                                    id:fromdate
+                    								hint_text: "dd-mm-yyyy"
+                                                    text:root.from_date
+                    								mode: "fill"
+                    								fill_color: 0, 0, 0, .4
+                                                    size_hint_y: None
+                                                    height: "20dp"
+                    								
+                    								
+                                                    
+                                                MDIconButton:
+                                                    icon:"calendar-month"
+                                                    ripple_scale: .5
+                                                    pos_hint: {"center_y": .5}
+                                                    pos: fromdate.width - self.width + dp(3), 0       
+                                                    on_release:root.show_from_date()
+                                                    
+                                            
+                							MDLabel:
+                                            	text:"To"
+                                            	halign:"center" 
+                                                size_hint_y: None
+                                                height: '20dp'                            
+                                            MDRelativeLayout:
+                                                size_hint_y: None
+                                                height: todate.height                              
+                                                MDTextField:
+                                                    id:todate
+                                                    hint_text: "dd-mm-yyyy"
+                                                    text:root.to_date
+                                                    mode: "fill"
+                                                    fill_color: 0, 0, 0, .4
+                                                    size_hint_y: None
+                                                    height: '20dp'
+                                                    
+                                                    
+                                                    
+                                                MDIconButton:
+                                                    icon:"calendar-month"
+                                                    ripple_scale: .5
+                                                    pos_hint: {"center_y": .5}
+                                                    pos: todate.width - self.width + dp(3), 0
+                                                    on_release:root.show_to_date()
+                							MDBoxLayout:
+                                                orientation: 'horizontal'
+                                                spacing: "10dp"
+                                                padding: "20dp"
+                                                #md_bg_color:0.176,0.26,0.3,1
+                                                size_hint_y:None
+                                                height:"100dp"
+                                                MDCheckbox:
+                                                	id:switch1
+                                                	group:'group'
+                                                	size_hint:None,None
+                                                	size: dp(48),dp(48)
+                                                	active:True
+                                                	pos_hint:{'center_y':0.5}
+                                                MDLabel:
+                                                	text:'Buy'
+                                                	halign:'left'
+                                                	size_hint:None,None
+                                                	size:dp(28),dp(28)
+                                                	pos_hint:{'center_y':0.5}
+                                                MDCheckbox:
+                                                	id:switch2
+                                                	group:'group'
+                                                	size_hint:None,None
+                                                	size: dp(48),dp(48)
+                                                	
+                                                	pos_hint:{'center_y':0.5}
+                                                MDLabel:
+                                                	text:'Sell'
+                                                    halign: 'left'
+                                                    size_hint:None,None
+                                                    size:dp(28),dp(28)
+                                                    pos_hint: {'center_y': 0.5}	  								
+                							    MDRaisedButton:
+                							    	id:check
+                    								text: "Check Records"
+                    								#md_bg_color: 1, 0, 1, 1
+                    								pos_hint:{'center_x':0.7,'center_y':0.5}
+                    								padding:["10dp","0dp","10dp","0dp"]
+                                                    #radius:[dp(220), dp(220), dp(220), dp(220)]
+                                                    on_release:app.check_record()
+                                        # yellow box
+                                        MDBoxLayout:
+                                            orientation: 'vertical'
+                                            md_bg_color:0.99,0.9,0.4,1
+                                            size_hint: (1,None)
+                                            height:"300dp"                                           
+                                            #pos_hint:{"top":0.2}
+                                            
+                                              
+                                            padding: dp(10), dp(10)
+
+                                            ScrollView:
+                                                id:header_scrollview
+                                                size_hint:(1, None)
+                                                height:30
+                                                do_scroll_x:True
+                                                GridLayout:
+                                                    id:header_layout
+                                                    cols:3
+                                                    size_hint:(1, None)
+                                                    height:30
+                                                    spacing:"30dp"
+                                                    padding:[10,10,10,10]
+                                                    MDLabel:
+                                                        text:'Items'
+                                                        halign:'center'
+                                                    MDLabel:
+                                                        text:'Date & Time'
+                                                        halign:'center'
+                                                    MDLabel:
+                                                        text:'Price'
+                                                        halign:'center'
+                                            MDSeparator:
+                                                orientation: "horizontal"
+
+                                            ScrollView:
+                                                id:data_scrollview
+                                                GridLayout:
+                                                    id:data_layout
+                                                    cols:3
+                                                    size_hint:(1, None)
+                                                    spacing:"50dp"
+                                                    padding:[10,"30dp",10,10]
+                                                    height: self.minimum_height
+
+                                        
+                        Tab:
+                            icon:"cart-arrow-down"
+                            title:"BUY"
+                            MDBoxLayout:
+                                orientation:'vertical'
+                                #md_bg_color:0.991,0.36,0.7,1
+                                #pos_hint:{'top':.8}
+                                MDBoxLayout:
+                                    orientation:'vertical'
+                                    #md_bg_color:0.1,0.3,0.3,1
+                                    #adaptive_height: True
+                                    
+                                    size_hint:1,None
+                                    height:'100dp'  # this record is chaged & comment for computer default 100
+                                    padding:10
+                                    spacing:10
+                                    pos_hint:{'top':.1}
+                                    
+                                    
+
+                                    MDLabel:
+                                        id:label1
+                                           #{root.from_date}
+                                        halign:'center'     
+                                        color:(1, 0, 0, 1)
+                                    MDSeparator:
+                                        orientation: "horizontal"
+                                    MDRaisedButton:
+                                        text: "Add Product"
+                                        #md_bg_color: 1, 0, 1, 1
+                                        pos_hint:{'center_x':0.5}
+                                        padding:10
+                                        size_hint:1,1
+                                        on_release: app.show_confirmation_dialog()
+                                 
+                                    	
+                                
+                                MDBoxLayout:
+                                    id:body
+                                    orientation: "vertical"                                
+                                    size_hint: (1,None)
+                                    height:"450dp"                                           
+                                    #pos_hint:{"top":0.2}                                 
+                                    padding: dp(10), dp(10)
+                                    #md_bg_color:0.8,0.6,0.7,1
+                                    
+                                 
+
+                                    ScrollView:                                  
+                                        size_hint:(1, None)
+                                        height:30
+                                        do_scroll_x:True
+                                        MDGridLayout:
+                                            id:header_layout1
+                                            cols:3
+                                            size_hint:(1, None)
+                                            height:30
+                                            spacing:"30dp"
+                                            padding:[10,10,10,10]
+                                            MDLabel:
+                                                text:'Items'
+                                                halign:'center'
+                                            MDLabel:
+                                                text:'Date & Time'
+                                                halign:'center'
+                                            MDLabel:
+                                                text:'Price'
+                                                halign:'center'
+                                    MDSeparator:
+                                        orientation: "horizontal"
+
+                                    ScrollView:                                 
+                                        MDGridLayout:
+                                            id:table1_row
+                                            cols:3
+                                            size_hint:(1, None)
+                                            spacing:"50dp"
+                                            padding:[10,"30dp",10,10]
+                                            adaptive_height: True
+                                    
+
+                                    
+                                    
+                                    
+                                            
+                                    
+                                            
+
+
+
+
+                        Tab:
+                            icon:"cart-arrow-up"
+                            title:"SELL"
+                            MDBoxLayout:
+                                orientation:'vertical'
+                                #md_bg_color:0.1,0.36,0.7,1
+                                #pos_hint:{'top':.8}  # this record is chaged for computer default 1
+                                MDBoxLayout:
+                                    orientation:'vertical'
+                                    #md_bg_color:0.1,0.3,0.3,1
+                                    #adaptive_height: True
+                                    pos_hint:{'top':1}
+                                    size_hint:1,None
+                                    height:'100dp' # this record is chaged & comment for computer default 100
+                                    padding:10
+                                    spacing:10
+
+                                    MDLabel:
+                                        id:label2
+                                        
+                                        halign:'center'     
+                                        color:(0, 1, 0, 1)
+                                    MDSeparator:
+                                        orientation: "horizontal"
+                                    MDRaisedButton:
+                                        text: "Add Product"
+                                        #md_bg_color: 1, 0, 1, 1
+                                        pos_hint:{'center_x':0.5}
+                                        padding:10
+                                        size_hint:1,1
+                                        on_release: app.show_confirmation_dialog2()
+                                
+                                MDBoxLayout:
+                                    id:body2
+                                    orientation: "vertical"
+                                    #adaptive_height:True
+
+                                    size_hint: (1,None)
+                                    height:"450dp"                                           
+                                    #pos_hint:{"top":0.2}                                 
+                                    padding: dp(10), dp(10)
+
+                                    ScrollView:                                  
+                                        size_hint:(1, None)
+                                        height:30
+                                        do_scroll_x:True
+                                        MDGridLayout:
+                                            id:header_layout2
+                                            cols:3
+                                            size_hint:(1, None)
+                                            height:30
+                                            spacing:"30dp"
+                                            padding:[10,10,10,10]
+                                            MDLabel:
+                                                text:'Items'
+                                                halign:'center'
+                                            MDLabel:
+                                                text:'Date & Time'
+                                                halign:'center'
+                                            MDLabel:
+                                                text:'Price'
+                                                halign:'center'
+                                    MDSeparator:
+                                        orientation: "horizontal"
+
+                                    ScrollView:                                 
+                                        MDGridLayout:
+                                            id:table2_row
+                                            cols:3
+                                            size_hint:(1, None)
+                                            spacing:"50dp"
+                                            padding:[10,"30dp",10,10]
+                                            adaptive_height: True
+
+                                            
+
+
+        MDNavigationDrawer:
+            id:nav_drawer
+            BoxLayout:
+                id:nav_boxlayout
+                orientation:'vertical'
+                spacing:"8dp"
+                padding:"8dp"
+                
+                AnchorLayout:
+                    anchor_x:"left"
+                    height:avtar.height
+                    Image:
+                        id:avtar
+
+                        source:'budget.png'
+                
+                
+                MDLabel:
+                    id:nav_name
+                    text:''                  
+                    font_style:'Button'
+                    size_hint_y:None
+                    height: self.texture_size[1]
+                MDLabel:
+                    id:nav_email
+                    text: ""
+                    font_style: "Caption"
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                
+                ScrollView:
+                    MDList:                            
+                        OneLineIconListItem:
+                            on_release:root.manager.current='about'
+                            text: 'About'
+                            elevation:10
+                            divider:None
+                            IconLeftWidget:
+                                icon: 'help-circle-outline'
+                            
+                        
+                                              
+                        OneLineIconListItem:
+                            on_release:app.stop()
+                            text:'Exit'
+                            divider:None
+                            elevation:10
+                            IconLeftWidget:
+                                icon: 'exit-to-app'
+
+    
+
+    
+    
+<Screen2>:
+    name: 'about'
+    MDFloatLayout:
+        #md_bg_color:app.theme_cls.primary_color
+        MDBoxLayout:
+            orientation:'vertical'
+            MDToolbar:
+                title:'About'
+                left_action_items:[["keyboard-backspace",lambda x: app.back_func() ]]             
+                elevation:13
+            MDBoxLayout:               
+                orientation: 'vertical'
+                                   
+                
+                Image:
+                    id:gif            
+                    source: 'budget.png'         
+                    
+                    size:800,500
+                    #anim_delay: -1
+                    #anim_loop: 1
+                                           
+                ScrollView:
+                    GridLayout:
+                        cols:1
+                        size_hint_y: None
+                        height: self.minimum_height                                                       
+                        
+                        #padding:dp(4),dp(4)
+                        #spacing:dp(8)    
+                        
+                        Label:                                     
+                            text:f"{' '*int(dp(3))}[color=89CFF0]Thank You For[/color][color=488248] Download[/color]{' '*int(dp(3))}\n"
+                            font_size: 50
+                            text_size: self.width, None
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            markup:True
+                            pos_hint:{'center_x':0.5}
+                        Label:                                         
+                            text:f"{' '*int(dp(2))}[i][color=007C80]Developed by [/color][b][color=20B2AA]Anupam Kayal[/b][/color][/i]{' '*int(dp(3))}\n"
+                            font_size: 50
+                            text_size: self.width, None
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            markup:True
+                            
+                        Label:
+                            id:contact                                
+                            text:f"{' '*int(dp(9))}Contact Us{' '*int(dp(3))}\n"
+                            font_size: 50
+                            text_size: self.width, None
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            markup:True
+                            color:0.3,1,1,1
+                                                     
+                        Widget:
+                            id: separator
+                            size_hint_y: None
+                            height: 7
+                            canvas:
+                                Color:
+                                    rgb: 1., 0., 0.                                           
+                                Rectangle:
+                                    pos: 0, separator.center_y+37                    
+                                    size: separator.width, 2
+                        MDGridLayout:
+                            cols:3
+                            size_hint_y: None
+                            height: self.minimum_height                                                       
+                                                                                                                     
+                            MDIconButton:
+                                #on_release:root.facebook()
+                                icon: 'facebook'                    
+                                user_font_size:'44sp'                                                                                   
+                            MDIconButton:
+                                #on_release:root.whatsapp()
+                                icon:'whatsapp'                                      
+                                user_font_size:'44sp'
+                            MDIconButton:
+                                #on_release:root.gmail()
+                                icon: "gmail"                                              
+                                user_font_size:'44sp' 
+                            MDIconButton:
+                                #on_release:root.youtube()
+                                icon: "youtube"                                                 
+                                user_font_size:'44sp'
+
+<Welcome_Screen>:
+    name: 'welcome'
+    MDFloatLayout:
+        md_bg_color:1,1,1,1
+        AnchorLayout:
+            anchor_x:'left'
+            anchor_y:'top'
+            MDBoxLayout:
+                orientation:'horizontal'
+                adaptive_height:True
+                spacing:7
+                Image:
+                    source:'budget.png'
+                    size_hint:None,None
+                    size:40,40
+                MDLabel:
+                    text: "Profit & Loss"
+                    font_name:"semi_poppins"
+                    font_size:"15sp"
+                    halign:'left'
+                    valign:"top"
+                    color:rgba(34,34,34,255)
+                    #pos_hint:{"center_y":0.45}
+        AnchorLayout:
+            anchor_x:'center'
+            anchor_y:'top'
+            Image:
+                source:'images.png'
+                size_hint:0.7,0.7
+        
+        MDLabel:
+            text: "H e l l o  !"
+            font_name:"semi_poppins"
+            font_size:"23sp"
+            halign:'center'
+            color:rgba(34,34,34,255)
+            pos_hint:{"center_y":0.45}
+        MDLabel:
+            text: "Track your finances like a boss with Profit Loss App!"
+            font_name:"mid_poppins"
+            font_size:"13sp"
+            halign:'center'
+            color:rgba(127,127,127,255)
+            pos_hint:{"center_y":0.39}
+        Button:
+            text:"LOGIN"
+            size_hint:0.66,.065
+            pos_hint:{'center_x':0.5,'center_y':0.25}
+            background_color: 0,0,0,0
+            font_name:"semi_poppins"
+            on_release:
+                root.manager.transition.direction='right'
+                root.manager.current="login"
+            canvas.before:
+                Color:
+                    rgb:rgba(52,0,231,255)
+                RoundedRectangle:
+                    size:self.size
+                    pos:self.pos
+                    radius:[5]
+
+        Button:
+            text:"SIGNUP"
+            size_hint:0.66,.065
+            pos_hint:{'center_x':0.5,'center_y':0.16}
+            background_color: 0,0,0,0
+            font_name:"semi_poppins"
+            color:rgba(52,0,231,255)
+            on_release:
+                root.manager.transition.direction='right'
+                root.manager.current="sign_up"
+            canvas.before:
+                Color:
+                    rgb:rgba(52,0,231,255)
+                Line:
+                    width:1.2
+                    rounded_rectangle: self.x,self.y,self.width,self.height,5,5,5,5,100
+                    
+
+<Login_Screen>:
+    name:'login'
+    MDFloatLayout:
+        md_bg_color:1,1,1,1
+        MDIconButton:
+            icon:'arrow-left'
+            pos_hint:{'center_y':0.95}
+            user_font_size:'30sp'
+            theme_text_color: "Custom"
+            text_color: rgba(26,24,58,255)
+            on_release:
+                root.manager.transition.direction='right'
+                root.manager.current="welcome"
+
+        
+        MDLabel:
+            text: "W e l c o m e!"
+            font_name:"semi_poppins"
+            font_size:"26sp"
+            
+            color:rgba(0,0,59,255)
+            pos_hint:{"center_x":0.6,"center_y":0.85}
+        MDLabel:
+            text: "Sign in to continue"
+            font_name:"mid_poppins"
+            font_size:"18sp"          
+            color:rgba(135,133,193,255)
+            pos_hint:{"center_x":0.6,"center_y":0.79}
+        MDFloatLayout:
+            size_hint:.7,.07
+            pos_hint:{'center_x':.5,'center_y':.63}
+            TextInput:
+                id:user_email
+                hint_text: "Email"
+                font_name:"mid_poppins"
+                size_hint_y:.75
+                pos_hint:{"center_x":.43,"center_y":.5}
+                background_color:1,1,1,0
+                foreground_color:rgba(0,0,59,255)
+                cursor_color:rgba(0,0,59,255)
+                font_size:"14sp"
+                cursour_width:'2sp'
+                multiline: False
+            MDFloatLayout:
+                pos_hint:{'center_x':0.45,"center_y":0}
+                size_hint_y:0.03
+                md_bg_color:rgba(178,178,178,255)
+        MDFloatLayout:
+            size_hint:.7,.07
+            pos_hint:{'center_x':.5,'center_y':.5}
+            TextInput:
+                id:user_password
+                hint_text: "Password"
+                font_name:"mid_poppins"
+                size_hint_y:.75
+                pos_hint:{"center_x":.43,"center_y":.5}
+                background_color:1,1,1,0
+                foreground_color:rgba(0,0,59,255)
+                cursor_color:rgba(0,0,59,255)
+                font_size:"14sp"
+                cursour_width:'2sp'
+                multiline: False
+                password:True
+            MDFloatLayout:
+                pos_hint:{'center_x':0.45,"center_y":0}
+                size_hint_y:0.03
+                md_bg_color:rgba(178,178,178,255)
+
+        Button:
+            text:"Login"
+            size_hint:0.66,.065
+            pos_hint:{'center_x':0.5,'center_y':0.36}
+            background_color: 0,0,0,0
+            font_name:"semi_poppins"
+            on_release:app.login_func()
+            canvas.before:
+                Color:
+                    rgb:rgba(52,0,231,255)
+                RoundedRectangle:
+                    size:self.size
+                    pos:self.pos
+                    radius:[5]
+
+        MDTextButton:
+            text: "Forgot Password?"
+            pos_hint:{"center_x":0.5,"center_y":0.285}
+            color:rgba(68,78,132,255)
+            font_size:"13sp"
+            font_name:"mid_poppins"
+        MDFloatLayout:
+            md_bg_color:rgba(178,178,178,255)
+            size_hint:.3,.002
+            pos_hint:{'center_x':0.3,'center_y':.23}
+        MDLabel:
+            text:"or"
+            color:rgba(52,0,231,255)
+            pos_hint:{"center_y":0.23}
+            font_size:'13sp'
+            font_name:'mid_poppins'
+            halign:"center"
+        MDFloatLayout:
+            md_bg_color:rgba(178,178,178,255)
+            size_hint:.3,.002
+            pos_hint:{'center_x':0.7,'center_y':.23}
+        MDLabel:
+            text:'Social Media Login'
+            font_name:'mid_poppins'
+            font_size:'13sp'
+            halign:"center"
+            pos_hint:{"center_y":0.177}
+            color:rgba(135,133,193,255)
+        MDGridLayout:
+            cols:2
+            size_hint:.3,.06
+            pos_hint:{'center_x':.5,"center_y":.12}
+            MDIconButton:
+                icon:'google.png'
+                
+            MDIconButton:
+                icon:"fb.png"
+
+
+        MDLabel:
+            text:"Don't have an account?"
+            font_name:'mid_poppins'
+            font_size:'12sp'
+            pos_hint:{'center_x':.6,"center_y":.05}
+            color:rgba(135,133,193,255)
+        MDTextButton:
+            text:"Sign Up"
+            font_name:'mid_poppins'
+            font_size:'11sp'
+            pos_hint:{'center_x':.7,"center_y":.05}
+            color:rgba(52,0,231,255)
+            on_release:
+                root.manager.transition.direction='left'
+                root.manager.current="sign_up"
+
+
+<Sign_Up>:
+    name:'sign_up'
+    MDFloatLayout:
+        md_bg_color:1,1,1,1
+        MDIconButton:
+            icon:'arrow-left'
+            pos_hint:{'center_y':0.95}
+            user_font_size:'30sp'
+            theme_text_color: "Custom"
+            text_color: rgba(26,24,58,255)
+            on_release:
+                root.manager.transition.direction='right'
+                root.manager.current='welcome'
+
+
+        
+        MDLabel:
+            text: "Hi!"
+            font_name:"semi_poppins"
+            font_size:"26sp"
+            
+            color:rgba(0,0,59,255)
+            pos_hint:{"center_x":0.6,"center_y":0.85}
+        MDLabel:
+            text: "Create a new account"
+            font_name:"mid_poppins"
+            font_size:"18sp"          
+            color:rgba(135,133,193,255)
+            pos_hint:{"center_x":0.6,"center_y":0.79}
+        MDFloatLayout:
+            size_hint:.7,.07
+            pos_hint:{'center_x':.5,'center_y':.66}
+            TextInput:
+                id:reg_name
+                hint_text: "Name"
+                font_name:"mid_poppins"
+                size_hint_y:.75
+                pos_hint:{"center_x":.43,"center_y":.56}
+                background_color:1,1,1,0
+                foreground_color:rgba(0,0,59,255)
+                cursor_color:rgba(0,0,59,255)
+                font_size:"14sp"
+                cursour_width:'2sp'
+                multiline: False
+            MDFloatLayout:
+                pos_hint:{'center_x':0.45,"center_y":0}
+                size_hint_y:0.03
+                md_bg_color:rgba(178,178,178,255)
+        MDFloatLayout:
+            size_hint:.7,.07
+            pos_hint:{'center_x':.5,'center_y':.56}
+            TextInput:
+                id:reg_email
+                hint_text: "Email"
+                font_name:"mid_poppins"
+                size_hint_y:.75
+                pos_hint:{"center_x":.43,"center_y":.5}
+                background_color:1,1,1,0
+                foreground_color:rgba(0,0,59,255)
+                cursor_color:rgba(0,0,59,255)
+                font_size:"14sp"
+                cursour_width:'2sp'
+                multiline: False
+            MDFloatLayout:
+                pos_hint:{'center_x':0.45,"center_y":0}
+                size_hint_y:0.03
+                md_bg_color:rgba(178,178,178,255)
+        MDFloatLayout:
+            size_hint:.7,.07
+            pos_hint:{'center_x':.5,'center_y':.46}
+            TextInput:
+                id:reg_password
+                hint_text: "Password"
+                font_name:"mid_poppins"
+                size_hint_y:.75
+                pos_hint:{"center_x":.43,"center_y":.5}
+                background_color:1,1,1,0
+                foreground_color:rgba(0,0,59,255)
+                cursor_color:rgba(0,0,59,255)
+                font_size:"14sp"
+                cursour_width:'2sp'
+                multiline: False
+                password:True
+            MDFloatLayout:
+                pos_hint:{'center_x':0.45,"center_y":0}
+                size_hint_y:0.03
+                md_bg_color:rgba(178,178,178,255)
+
+        Button:
+            text:"Registration"
+            size_hint:0.66,.065
+            pos_hint:{'center_x':0.5,'center_y':0.32}
+            background_color: 0,0,0,0
+            font_name:"semi_poppins"
+            on_release:app.signup_func()
+            canvas.before:
+                Color:
+                    rgb:rgba(52,0,231,255)
+                RoundedRectangle:
+                    size:self.size
+                    pos:self.pos
+                    radius:[5]
+
+        
+        MDFloatLayout:
+            md_bg_color:rgba(178,178,178,255)
+            size_hint:.3,.002
+            pos_hint:{'center_x':0.3,'center_y':.23}
+        MDLabel:
+            text:"or"
+            color:rgba(52,0,231,255)
+            pos_hint:{"center_y":0.23}
+            font_size:'13sp'
+            font_name:'mid_poppins'
+            halign:"center"
+        MDFloatLayout:
+            md_bg_color:rgba(178,178,178,255)
+            size_hint:.3,.002
+            pos_hint:{'center_x':0.7,'center_y':.23}
+        MDLabel:
+            text:'Social Media Signup'
+            font_name:'mid_poppins'
+            font_size:'13sp'
+            halign:"center"
+            pos_hint:{"center_y":0.177}
+            color:rgba(135,133,193,255)
+        MDGridLayout:
+            cols:2
+            size_hint:.3,.06
+            pos_hint:{'center_x':.5,"center_y":.12}
+            MDIconButton:
+                icon:'google.png'
+            MDIconButton:
+                icon:"fb.png"
+
+
+        MDLabel:
+            text:"Already have an account?"
+            font_name:'mid_poppins'
+            font_size:'12sp'
+            pos_hint:{'center_x':.6,"center_y":.05}
+            color:rgba(135,133,193,255)
+        MDTextButton:
+            text:"Sign In"
+            font_name:'mid_poppins'
+            font_size:'11sp'
+            pos_hint:{'center_x':.7,"center_y":.05}
+            color:rgba(52,0,231,255)
+            on_release:
+                root.manager.transition.direction='left'
+                root.manager.current="login"
+
+
+<First_Screen>:
+    name:"first"
+    MDFloatLayout:
+        md_bg_color:1,1,1,1
+        Carousel:
+            id:carousel
+            #scroll_timeout:0
+            on_current_slide:app.current_slide(self.index)
+            MDFloatLayout:           
+                Image:
+                    source:"img5.png"
+                    size_hint:.6,.6
+                    pos_hint:{'center_x':.5,"center_y":.7}
+                MDLabel:
+                    text:"Real Time Database With Login Security"
+                    pos_hint:{'center_y':.44}
+                    halign:"center"
+                    font_name:"mid_poppins"
+                    font_size:'14sp'
+                    color:rgba(95,88,117,255)
+                MDLabel:
+                    text:"You can check all previous records and manage them"
+                    pos_hint:{'center_x':.5,"center_y":.35}
+                    size_hint_x:.92
+                    font_name:"mid_poppins"
+                    halign:"center"
+                    font_name:"mid_poppins"
+                    font_size:'14sp'
+                    color:rgba(135,143,158,255)
+                MDTextButton:
+                    text:"Next"
+                    pos_hint:{'center_x':.88,'center_y':.95}
+                    font_name:'mid_poppins'
+                    font_size:'13sp'
+                    color:rgba(111,111,111,255)
+                    on_release:
+                        app.next()
+
+            MDFloatLayout:           
+                Image:
+                    source:"img4.png"
+                    size_hint:.6,.6
+                    pos_hint:{'center_x':.5,"center_y":.7}
+                MDLabel:
+                    text:"Secure Login System"
+                    pos_hint:{'center_y':.44}
+                    halign:"center"
+                    font_name:"mid_poppins"
+                    font_size:'14sp'
+                    color:rgba(95,88,117,255)
+                MDLabel:
+                    text:"With the help of secure database our login system is more secure than other database"
+                    pos_hint:{'center_x':.5,"center_y":.35}
+                    size_hint_x:.92
+                    font_name:"mid_poppins"
+                    halign:"center"
+                    font_name:"mid_poppins"
+                    font_size:'14sp'
+                    color:rgba(135,143,158,255)
+                MDTextButton:
+                    text:"Next"
+                    pos_hint:{'center_x':.88,'center_y':.95}
+                    font_name:'mid_poppins'
+                    font_size:'13sp'
+                    color:rgba(111,111,111,255)
+                    on_release:
+                        app.next()
+            MDFloatLayout:           
+                Image:
+                    source:"img2.png"
+                    size_hint:.6,.6
+                    pos_hint:{'center_x':.5,"center_y":.7}
+                MDLabel:
+                    text:"Manage All Data At On Place"
+                    pos_hint:{'center_y':.44}
+                    halign:"center"
+                    font_name:"mid_poppins"
+                    font_size:'14sp'
+                    color:rgba(95,88,117,255)
+                MDLabel:
+                    text:"Daily data & previous data are also manage at the one place"
+                    pos_hint:{'center_x':.5,"center_y":.35}
+                    size_hint_x:.92
+                    font_name:"mid_poppins"
+                    halign:"center"
+                    font_name:"mid_poppins"
+                    font_size:'14sp'
+                    color:rgba(135,143,158,255)
+                Button:
+                    text:"Get Started"
+                    pos_hint:{'center_x':.5,'center_y':.2}
+                    font_name:'mid_poppins'
+                    font_size:'13sp'
+                    background_color:0,0,0,0
+                    size_hint:.9,.075
+                    canvas.before:
+                        Color:
+                            rgb:rgba(50,44,106,255)
+                        RoundedRectangle:
+                            size:self.size
+                            pos:self.pos
+                            radius:[10]                
+                    on_release:
+                        root.manager.current="welcome"
+
+        MDLabel:
+            id:slide0
+            text:"."
+            color:rgba(253,140,95,255)
+            pos_hint:{"center_x":0.45,"center_y":0.12}
+            font_size:"80sp"
+            halign:"center"
+        MDLabel:
+            id:slide1
+            text:"."
+            color:rgba(235,237,240,255)
+            pos_hint:{"center_x":0.5,"center_y":0.12}
+            font_size:"80sp"
+            halign:"center"
+        MDLabel:
+            id:slide2
+            text:"."
+            color:rgba(235,237,240,255)
+            pos_hint:{"center_x":0.55,"center_y":0.12}
+            font_size:"80sp"
+            halign:"center"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+                
+
+                
+
