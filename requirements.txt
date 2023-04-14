@@ -1,0 +1,4 @@
+kivy
+kivymd==0.104.2
+pyrebase4==4.6.0   
+
