@@ -843,7 +843,7 @@ class TestApp(MDApp):
             toast('Please enter only Google Mail Id')	
         
     def initialize_func(self):
-        config={'apiKey': "AIzaSyD831yLZwF8d_Hw9qktC3AG7eHlto7zI8M",
+        config={'apiKey': API_KEY_HERE,
   	  'authDomain': "user-data-39d9f.firebaseapp.com",
         'databaseURL': "https://user-data-39d9f-default-rtdb.firebaseio.com",
         'projectId': "user-data-39d9f",
@@ -851,7 +851,7 @@ class TestApp(MDApp):
         'messagingSenderId': "864339125441",
         'appId': "1:864339125441:web:d4210e06cd6ed59323e040",
         'measurementId': "G-PL70R27DMX",
-        "serviceAccount": "serviceAccountKey.json"}
+        "serviceAccount": ADD_serviceAccountKey.json }
         self.firebase = pyrebase.initialize_app(config)
         
     
